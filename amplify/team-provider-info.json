@@ -1,0 +1,19 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "happyhourwebsite-20190326182232-authRole",
+            "UnauthRoleArn": "arn:aws:iam::295539129012:role/happyhourwebsite-20190326182232-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::295539129012:role/happyhourwebsite-20190326182232-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "happyhourwebsite-20190326182232-deployment",
+            "UnauthRoleName": "happyhourwebsite-20190326182232-unauthRole",
+            "StackName": "happyhourwebsite-20190326182232",
+            "StackId": "arn:aws:cloudformation:us-west-2:295539129012:stack/happyhourwebsite-20190326182232/1eed1820-4ff4-11e9-a153-06f9c19107c8"
+        },
+        "categories": {
+            "auth": {
+                "cognitoa218ecec": {}
+            }
+        }
+    }
+}
