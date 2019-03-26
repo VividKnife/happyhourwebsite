@@ -1,0 +1,16 @@
+projects:
+  happyhourwebsite:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        graphQLApiId: bwuwxfq55zgk7dltjawqzojcau
+      endpoints:
+        prod: >-
+          https://5j7claliabglnbdbkpejj4dmjm.appsync-api.us-west-2.amazonaws.com/graphql
