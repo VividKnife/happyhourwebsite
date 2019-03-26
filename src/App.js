@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { isAuthenticated } from './auth';
 
 class App extends Component {
+  
+  componentDidMount() {
+    const auth = isAuthenticated();
+    console.log(auth)
+  }
+  
   render() {
     return (
       <div className="App">
