@@ -1,0 +1,28 @@
+type CreditLog @model {
+    id: ID!
+	item: Item @connection(name: "ItemLogs")
+	user: User! @connection(name: "UserLogs")
+	creditChange: String!
+}
+
+enum ItemType {
+	Drink
+	Chips
+	Fruit
+	Other
+}
+
+type Item @model {
+	id: ID!
+	name: String!
+	link: String!
+	imageUrl: String!
+	price: String!
+	type: ItemType!
+    CreditLogs: [CreditLog] @connection(name: "ItemLogs")
+}
+
+type User @model {
+  user: ID!
+  creditLogs: [CreditLog] @connection(name: "UserLogs")
+}

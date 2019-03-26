@@ -3,7 +3,7 @@ import { CognitoAuth } from "amazon-cognito-auth-js";
 function getAuth() {
     const auth = new CognitoAuth({
         AdvancedSecurityDataCollectionFlag: false,
-        AppWebDomain: "https://happyhour.auth.us-west-2.amazoncognito.com",
+        AppWebDomain: "happyhour.auth.us-west-2.amazoncognito.com",
         ClientId: "2sd2iuu47j5o1jgbg0pu9mngrv",
         RedirectUriSignIn: "https://master.d2psbvroh44nz7.amplifyapp.com",
         RedirectUriSignOut: "https://master.d2psbvroh44nz7.amplifyapp.com",

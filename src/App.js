@@ -6,8 +6,8 @@ import { isAuthenticated } from './auth';
 class App extends Component {
   
   componentDidMount() {
-    const auth = isAuthenticated();
-    console.log(auth)
+    // const auth = isAuthenticated();
+    // console.log(auth)
   }
   
   render() {
