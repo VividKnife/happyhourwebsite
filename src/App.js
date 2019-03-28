@@ -88,13 +88,13 @@ class App extends Component {
   }
 
   render() {
-    let creditsLabel = `Credits:  ${this.state.credits}`;
+    let creditsLabel = `Credits:  $${this.state.credits}`;
     let n = 0;
 
     return (
       <div>
         <cards-nav avatar-id={this.state.user} stick-top icon-href="/" icon-src="https://pngimg.com/uploads/amazon/amazon_PNG25.png" items={`[{
-          "label": "$${creditsLabel}",
+          "label": "${creditsLabel}",
           "href": "/",
           "id": "parent",
           "alignRight": "true"
