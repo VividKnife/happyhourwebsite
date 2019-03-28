@@ -1,4 +1,5 @@
 type CreditLog @model {
+	#abc
     id: ID!
 	item: Item @connection(name: "ItemLogs")
 	user: User! @connection(name: "UserLogs")
@@ -23,6 +24,6 @@ type Item @model {
 }
 
 type User @model {
-  user: ID!
+  id: ID!
   creditLogs: [CreditLog] @connection(name: "UserLogs")
 }

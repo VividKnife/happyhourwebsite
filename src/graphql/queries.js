@@ -16,7 +16,7 @@ export const getCreditLog = `query GetCreditLog($id: ID!) {
       }
     }
     user {
-      user
+      id
       creditLogs {
         nextToken
       }
@@ -42,7 +42,7 @@ export const listCreditLogs = `query ListCreditLogs(
         type
       }
       user {
-        user
+        id
       }
       creditChange
     }
@@ -82,6 +82,13 @@ export const listItems = `query ListItems(
       price
       type
       CreditLogs {
+        items {
+          id
+          creditChange
+          user {
+            id
+          }
+        }
         nextToken
       }
     }
@@ -91,7 +98,7 @@ export const listItems = `query ListItems(
 `;
 export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
-    user
+    id
     creditLogs {
       items {
         id
@@ -109,7 +116,7 @@ export const listUsers = `query ListUsers(
 ) {
   listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      user
+      id
       creditLogs {
         nextToken
       }

@@ -16,7 +16,7 @@ export const createCreditLog = `mutation CreateCreditLog($input: CreateCreditLog
       }
     }
     user {
-      user
+      id
       creditLogs {
         nextToken
       }
@@ -40,7 +40,7 @@ export const updateCreditLog = `mutation UpdateCreditLog($input: UpdateCreditLog
       }
     }
     user {
-      user
+      id
       creditLogs {
         nextToken
       }
@@ -64,7 +64,7 @@ export const deleteCreditLog = `mutation DeleteCreditLog($input: DeleteCreditLog
       }
     }
     user {
-      user
+      id
       creditLogs {
         nextToken
       }
@@ -129,7 +129,7 @@ export const deleteItem = `mutation DeleteItem($input: DeleteItemInput!) {
 `;
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
-    user
+    id
     creditLogs {
       items {
         id
@@ -142,7 +142,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
 `;
 export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
-    user
+    id
     creditLogs {
       items {
         id
@@ -155,7 +155,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
 `;
 export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
-    user
+    id
     creditLogs {
       items {
         id

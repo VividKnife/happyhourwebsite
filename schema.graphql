@@ -1,0 +1,227 @@
+﻿schema {
+
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type CreditLog {
+  creditChange: Int!
+  id: ID!
+  item: Item
+  user: User!
+}
+
+type Item {
+  CreditLogs(filter: ModelCreditLogFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCreditLogConnection
+  id: ID!
+  imageUrl: String!
+  link: String!
+  name: String!
+  price: String!
+  type: ItemType!
+}
+
+type ModelCreditLogConnection {
+  items: [CreditLog]
+  nextToken: String
+}
+
+type ModelItemConnection {
+  items: [Item]
+  nextToken: String
+}
+
+type ModelUserConnection {
+  items: [User]
+  nextToken: String
+}
+
+type Mutation {
+  createCreditLog(input: CreateCreditLogInput!): CreditLog
+  createItem(input: CreateItemInput!): Item
+  createUser(input: CreateUserInput!): User
+  deleteCreditLog(input: DeleteCreditLogInput!): CreditLog
+  deleteItem(input: DeleteItemInput!): Item
+  deleteUser(input: DeleteUserInput!): User
+  updateCreditLog(input: UpdateCreditLogInput!): CreditLog
+  updateItem(input: UpdateItemInput!): Item
+  updateUser(input: UpdateUserInput!): User
+}
+
+type Query {
+  getCreditLog(id: ID!): CreditLog
+  getItem(id: ID!): Item
+  getUser(id: ID!): User
+  listCreditLogs(filter: ModelCreditLogFilterInput, limit: Int, nextToken: String): ModelCreditLogConnection
+  listItems(filter: ModelItemFilterInput, limit: Int, nextToken: String): ModelItemConnection
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection
+}
+
+type Subscription {
+  onCreateCreditLog: CreditLog @aws_subscribe(mutations : ["createCreditLog"])
+  onCreateItem: Item @aws_subscribe(mutations : ["createItem"])
+  onCreateUser: User @aws_subscribe(mutations : ["createUser"])
+  onDeleteCreditLog: CreditLog @aws_subscribe(mutations : ["deleteCreditLog"])
+  onDeleteItem: Item @aws_subscribe(mutations : ["deleteItem"])
+  onDeleteUser: User @aws_subscribe(mutations : ["deleteUser"])
+  onUpdateCreditLog: CreditLog @aws_subscribe(mutations : ["updateCreditLog"])
+  onUpdateItem: Item @aws_subscribe(mutations : ["updateItem"])
+  onUpdateUser: User @aws_subscribe(mutations : ["updateUser"])
+}
+
+type User {
+  creditLogs(filter: ModelCreditLogFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCreditLogConnection
+  user: ID!
+}
+
+enum ItemType {
+  Chips
+  Drink
+  Fruit
+  Other
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateCreditLogInput {
+  creditChange: Int!
+  creditLogItemId: ID
+  creditLogUserId: ID!
+  id: ID
+}
+
+input CreateItemInput {
+  id: ID
+  imageUrl: String!
+  link: String!
+  name: String!
+  price: String!
+  type: ItemType!
+}
+
+input CreateUserInput {
+  user: ID!
+}
+
+input DeleteCreditLogInput {
+  id: ID
+}
+
+input DeleteItemInput {
+  id: ID
+}
+
+input DeleteUserInput {
+  id: ID
+}
+
+input ModelBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelCreditLogFilterInput {
+  and: [ModelCreditLogFilterInput]
+  creditChange: ModelIntFilterInput
+  id: ModelIDFilterInput
+  not: ModelCreditLogFilterInput
+  or: [ModelCreditLogFilterInput]
+}
+
+input ModelFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input ModelIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input ModelIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input ModelItemFilterInput {
+  and: [ModelItemFilterInput]
+  id: ModelIDFilterInput
+  imageUrl: ModelStringFilterInput
+  link: ModelStringFilterInput
+  name: ModelStringFilterInput
+  not: ModelItemFilterInput
+  or: [ModelItemFilterInput]
+  price: ModelStringFilterInput
+  type: ModelItemTypeFilterInput
+}
+
+input ModelItemTypeFilterInput {
+  eq: ItemType
+  ne: ItemType
+}
+
+input ModelStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input ModelUserFilterInput {
+  and: [ModelUserFilterInput]
+  not: ModelUserFilterInput
+  or: [ModelUserFilterInput]
+  user: ModelIDFilterInput
+}
+
+input UpdateCreditLogInput {
+  creditChange: Int
+  creditLogItemId: ID
+  creditLogUserId: ID
+  id: ID!
+}
+
+input UpdateItemInput {
+  id: ID!
+  imageUrl: String
+  link: String
+  name: String
+  price: String
+  type: ItemType
+}
+
+input UpdateUserInput {
+  user: ID
+}

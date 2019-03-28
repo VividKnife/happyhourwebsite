@@ -16,7 +16,7 @@ export const onCreateCreditLog = `subscription OnCreateCreditLog {
       }
     }
     user {
-      user
+      id
       creditLogs {
         nextToken
       }
@@ -40,7 +40,7 @@ export const onUpdateCreditLog = `subscription OnUpdateCreditLog {
       }
     }
     user {
-      user
+      id
       creditLogs {
         nextToken
       }
@@ -64,7 +64,7 @@ export const onDeleteCreditLog = `subscription OnDeleteCreditLog {
       }
     }
     user {
-      user
+      id
       creditLogs {
         nextToken
       }
@@ -129,7 +129,7 @@ export const onDeleteItem = `subscription OnDeleteItem {
 `;
 export const onCreateUser = `subscription OnCreateUser {
   onCreateUser {
-    user
+    id
     creditLogs {
       items {
         id
@@ -142,7 +142,7 @@ export const onCreateUser = `subscription OnCreateUser {
 `;
 export const onUpdateUser = `subscription OnUpdateUser {
   onUpdateUser {
-    user
+    id
     creditLogs {
       items {
         id
@@ -155,7 +155,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
 `;
 export const onDeleteUser = `subscription OnDeleteUser {
   onDeleteUser {
-    user
+    id
     creditLogs {
       items {
         id
