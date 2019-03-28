@@ -166,3 +166,11 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   }
 }
 `;
+export const getItemInfo = `mutation GetItemInfo($input: GetItemInfoInput!) {
+  getItemInfo(input: $input) {
+    price
+    name
+    imgLink
+  }
+}
+`;

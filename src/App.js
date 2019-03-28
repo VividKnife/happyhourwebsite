@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { isAuthenticated } from './auth';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CardList from './components/CardList';
 import config from './aws-exports';
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import * as queries from './graphql/queries';
 import * as subscriptions from './graphql/subscriptions';
 import * as mutations from './graphql/mutations';
-import AWS from 'aws-sdk';
 // import { Connect } from "aws-amplify-react";
 
 Amplify.configure(config);
@@ -22,12 +20,6 @@ Amplify.configure(config);
     fun(result.data.listItems.items);
   })
  };
-
- const lambda = new AWS.Lambda({
-   region: "us-west-2",
-   accessKeyId: "AKIAUJT4BHK2IZZW3POQ",
-   secretAccessKey: "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"
- });
 
 class App extends Component {
   state = {
@@ -47,12 +39,11 @@ class App extends Component {
     console.log(input.value);
 
     event.preventDefault();
-    lambda.invoke({
-      FunctionName: "happyhour-crawler",
-      Payload: JSON.stringify({prodUrl: input.value})
-    }).promise().then((data) => {
+    API.graphql(graphqlOperation(mutations.getItemInfo, {input: {
+      prodUrl: input.value
+    }})).then((data) => {
       console.log(data);
-      let result = JSON.parse(data.Payload);
+      let result = data.data.getItemInfo;
       console.log(result);
       console.log(result['"name"']);
       API.graphql(graphqlOperation(mutations.createItem, { input: {
@@ -74,7 +65,7 @@ class App extends Component {
       }
     }));
     let credits = logs.map(log => log.creditChange)
-      .reduce(((sum, c) => sum - c), this.state.credits);
+      .reduce(((sum, c) => sum - c), 5);
     this.setState({
       items,
       credits
@@ -97,6 +88,7 @@ class App extends Component {
 
   render() {
     let creditsLabel = `Credits:  ${this.state.credits}`;
+    let n = 0;
 
     return (
       <div>
@@ -137,7 +129,7 @@ class App extends Component {
           </div>
         </section>
         <div className="container" style={{paddingTop: "3rem"}}>
-          <CardList items={this.state.items} />
+          <CardList items={this.state.items} credits={this.state.credits}/>
         </div>
         {/* <Connect
           query={graphqlOperation(queries.listItems)}
