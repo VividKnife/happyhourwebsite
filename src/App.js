@@ -8,6 +8,7 @@ import Amplify, { API, graphqlOperation } from "aws-amplify";
 import * as queries from './graphql/queries';
 import * as subscriptions from './graphql/subscriptions';
 import * as mutations from './graphql/mutations';
+import userId from "./user";
 // import { Connect } from "aws-amplify-react";
 
 Amplify.configure(config);
@@ -25,7 +26,7 @@ class App extends Component {
   state = {
     items: [],
     credits: 0,
-    user: "shufakan"
+    user: userId
   }
 
   myRef = React.createRef();
@@ -92,8 +93,8 @@ class App extends Component {
 
     return (
       <div>
-        <cards-nav avatar-id='shufakan' stick-top icon-href="/" icon-src="https://pngimg.com/uploads/amazon/amazon_PNG25.png" items={`[{
-          "label": "${creditsLabel}",
+        <cards-nav avatar-id={this.state.user} stick-top icon-href="/" icon-src="https://pngimg.com/uploads/amazon/amazon_PNG25.png" items={`[{
+          "label": "$${creditsLabel}",
           "href": "/",
           "id": "parent",
           "alignRight": "true"
@@ -129,7 +130,7 @@ class App extends Component {
           </div>
         </section>
         <div className="container" style={{paddingTop: "3rem"}}>
-          <CardList items={this.state.items} credits={this.state.credits}/>
+          <CardList items={this.state.items} credits={this.state.credits} user={this.state.user}/>
         </div>
         {/* <Connect
           query={graphqlOperation(queries.listItems)}

@@ -16,7 +16,7 @@ class Card extends React.Component {
     });
     API.graphql(graphqlOperation(mutations.createCreditLog, {input: {
      creditChange: 1,
-     creditLogUserId: "shufakan",
+     creditLogUserId: this.props.user,
      creditLogItemId: this.props.item.id
     }})).then(data => {
       console.log('Successfully created creditLog');
@@ -38,7 +38,7 @@ class Card extends React.Component {
     });
     API.graphql(graphqlOperation(mutations.createCreditLog, {input: {
      creditChange: -1,
-     creditLogUserId: "shufakan",
+     creditLogUserId: this.props.user,
      creditLogItemId: this.props.item.id
     }})).then(data => {
       console.log('Successfully created creditLog');
@@ -59,7 +59,7 @@ class Card extends React.Component {
     let remove_disabled = false;
     let add_disabled = false;
     let yourCredit = this.props.item.CreditLogs.items
-    .filter(log => log.user.id === "shufakan")
+    .filter(log => log.user.id === this.props.user)
     .reduce(((sum, log) => sum + log.creditChange), 0);
     if (yourCredit <= 0) {
        remove_disabled = true
@@ -75,10 +75,11 @@ class Card extends React.Component {
 
     const totalCredit = item.CreditLogs.items.reduce(((sum, log) => sum + log.creditChange), 0);
     return (
-        <div className="card mb-4 shadow-sm">
-          <img src={item.imageUrl} className="bd-placeholder-img card-img-top" alt={item.name} style={{width:"auto", height: "18rem"}}>
+        <div className="card mb-4 shadow-sm" >
+          <div style={{display: "flex", justifyContent: "center", height: "300px"}}>
+          <img src={item.imageUrl} className="bd-placeholder-img card-img-top" alt={item.name} style={{maxWidth: "300px", maxHeight: "300px", height:"auto", width: "auto"}}>
 
-          </img>
+          </img></div>
           <div className="card-body">
             <h5 className="card-title">{item.name}</h5>
             <p className="card-text">{`${item.price}                     Current Credits: $${totalCredit}`}</p>

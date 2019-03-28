@@ -15,14 +15,14 @@ class CardList extends React.Component {
   };
 
   render() {
-    const { credits, items } = this.props;
+    const { credits, items, user } = this.props;
 
     return (
       <div className="container">
         <div className="row">
             {items.map(item => (
               <div className="col-md-4" style={{paddingTop: "3rem"}} key={item.id}>
-                <ItemCard item={item} key={item.id} credits={credits}/>
+                <ItemCard item={item} key={item.id} credits={credits} user={user}/>
               </div>
             ))}
         </div>
